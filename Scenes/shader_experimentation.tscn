@@ -1,17 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnh6fy0ahv27m"]
+[gd_scene load_steps=7 format=3 uid="uid://cnh6fy0ahv27m"]
 
 [ext_resource type="Script" uid="uid://cjnyuu47lxfwb" path="res://Scripts/XR/start_xr.gd" id="2_wuk74"]
+[ext_resource type="PackedScene" uid="uid://4c5bfmsm21ke" path="res://models/blowtorch.glb" id="3_mpad8"]
+[ext_resource type="Script" uid="uid://d03cvurlnafpf" path="res://Scenes/shader_experimentation.tres.gd" id="4_qqebx"]
 [ext_resource type="Script" uid="uid://bvqmxy81b17nu" path="res://Scenes/mdt_test.gd" id="4_wuk74"]
 [ext_resource type="Material" uid="uid://m1raygcig17w" path="res://Materials/ps1/test/test_material.tres" id="5_mpad8"]
 [ext_resource type="Compositor" uid="uid://r76ikc2vw5qd" path="res://Scripts/Shaders/ps1_compositor.tres" id="5_qqebx"]
-
-[sub_resource type="GDScript" id="GDScript_drabv"]
-script/source = "extends Node3D
-
-func _process(delta):
-	rotate(Vector3.FORWARD, delta/15);
-	#rotate(Vector3.UP, delta*1/7);
-"
 
 [node name="ShaderExperimentation" type="Node3D"]
 
@@ -28,19 +22,23 @@ current = true
 size = 0.185
 
 [node name="Righthand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.109431535, 0, -0.553472)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030263782, 0, -0.1764752)
 tracker = &"right_hand"
+
+[node name="blowtorch" parent="XROrigin3D/Righthand" instance=ExtResource("3_mpad8")]
+transform = Transform3D(-2.1855695e-09, 0, -0.05, 0, 0.05, 0, 0.05, 0, -2.1855695e-09, 0, 0, 0)
+script = ExtResource("4_qqebx")
 
 [node name="Lefthand" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19684103, 0, -0.23747882)
 tracker = &"left_hand"
 
 [node name="Borked Box9" type="CSGBox3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, -0.14763081, 0.71599925, -0.20218584)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, -0.14763081, 0.71599925, -0.48673725)
 material = ExtResource("5_mpad8")
-script = SubResource("GDScript_drabv")
+script = ExtResource("4_qqebx")
 
 [node name="Borked Box10" type="CSGBox3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, 0.04528518, 0.71599925, -0.20218584)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, 0.04528518, 0.71599925, -0.48673725)
 material = ExtResource("5_mpad8")
 script = ExtResource("4_wuk74")
