@@ -145,7 +145,11 @@ META_ENVIRONMENT_DEPTH_TO_CAMERA_PROJECTION_RIGHT={
 }
 resolution={
 "type": "vec2",
-"value": Vector2(144, 81)
+"value": Vector2(288, 162)
+}
+depth_quantization={
+"type": "float",
+"value": 99.0
 }
 
 [xr]

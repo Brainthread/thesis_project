@@ -12,7 +12,7 @@ needs_normal_roughness = false
 script = ExtResource("1_n8lbn")
 x_size = 320
 y_size = 240
-shader_code = "const int pixel_size = 8;
+shader_code = "const int pixel_size = 4;
 const ivec2 pixel_step = ivec2(pixel_size, pixel_size);
 const float dither_gamma = 10;
 
