@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dvd7khlexidii"]
+
+[ext_resource type="Shader" uid="uid://bcahr5qafa6f1" path="res://Scripts/Shaders/ps1_shader.gdshader" id="1_7v681"]
+[ext_resource type="Texture2D" uid="uid://dc1lv7y68gy0r" path="res://models/Untitled_PIPE_V.png" id="2_7v681"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7v681")
+shader_parameter/my_texture = ExtResource("2_7v681")
+shader_parameter/tint = Color(0.7425603, 0.66232014, 0.6535012, 1)
+shader_parameter/vertex_snap = true
+shader_parameter/goraud_shaded = false
+shader_parameter/do_affine_mapping = true

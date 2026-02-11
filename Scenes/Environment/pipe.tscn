@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnrse7c226fbw"]
+
+[ext_resource type="ArrayMesh" uid="uid://nsofeqoovuol" path="res://models/pipemesh.res" id="1_r7yjh"]
+
+[node name="PIPE" type="MeshInstance3D"]
+skeleton = NodePath("")
+
+[node name="Cylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 0, 0, 0)
+mesh = ExtResource("1_r7yjh")
+skeleton = NodePath("")

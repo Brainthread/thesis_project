@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ckxoawh0wfs77"]
+
+[ext_resource type="Shader" uid="uid://lgoof066l4v7" path="res://Scripts/Shaders/ps1_shader_transparent.gdshader" id="1_a3lyu"]
+[ext_resource type="Texture2D" uid="uid://dj2lk0tk62jwd" path="res://Textures/Shadow.png" id="2_j2ln4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_a3lyu")
+shader_parameter/alpha_value = 1.0
+shader_parameter/my_texture = ExtResource("2_j2ln4")
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/vertex_snap = true
+shader_parameter/do_affine_mapping = true

@@ -32,7 +32,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_abtct")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_kc3y5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_n47ni"]
 _surfaces = [{
 "aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
 "format": 34896613377,
@@ -46,7 +46,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_n47ni"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_f030s"]
 resource_name = "w1_L1_Plane"
 _surfaces = [{
 "aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
@@ -62,7 +62,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/38AAP9/VNX//wAAAABU1f//AAD/f1TV/38AAAAAVNX/fwAA//9U1f//AAD/f1TV//8AAP//VNX/fwAA/39U1QAAAAD//1TV/38AAP9/VNX/fwAA//9U1QAAAAD/f1TVAAAAAP9/VNX/fwAAAABU1f9/AAD/f1TVAAAAAAAAVNVU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_kc3y5")
+shadow_mesh = SubResource("ArrayMesh_n47ni")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_45lja"]
 _surfaces = [{
@@ -167,28 +167,28 @@ skeleton = NodePath("")
 transform = Transform3D(-4.3711385e-08, -4.3711392e-08, -1, -1, -4.371139e-08, 4.371139e-08, -4.3711392e-08, 1, -4.371139e-08, -1, 1, 0)
 visibility_range_begin = 1.0
 visibility_range_end = 1.5
-mesh = SubResource("ArrayMesh_n47ni")
+mesh = SubResource("ArrayMesh_f030s")
 skeleton = NodePath("")
 
 [node name="Plane3" type="MeshInstance3D" parent="LOD1"]
 transform = Transform3D(-4.3711385e-08, -4.3711392e-08, -1, -1, -4.371139e-08, 4.371139e-08, -4.3711392e-08, 1, -4.371139e-08, 1, 1, 0)
 visibility_range_begin = 1.0
 visibility_range_end = 1.5
-mesh = SubResource("ArrayMesh_n47ni")
+mesh = SubResource("ArrayMesh_f030s")
 skeleton = NodePath("")
 
 [node name="Plane4" type="MeshInstance3D" parent="LOD1"]
 transform = Transform3D(-4.3711385e-08, -4.3711392e-08, -1, -1, -4.371139e-08, 4.371139e-08, -4.3711392e-08, 1, -4.371139e-08, 1, -1, 0)
 visibility_range_begin = 1.0
 visibility_range_end = 1.5
-mesh = SubResource("ArrayMesh_n47ni")
+mesh = SubResource("ArrayMesh_f030s")
 skeleton = NodePath("")
 
 [node name="Plane5" type="MeshInstance3D" parent="LOD1"]
 transform = Transform3D(-4.3711385e-08, -4.3711392e-08, -1, -1, -4.371139e-08, 4.371139e-08, -4.3711392e-08, 1, -4.371139e-08, -1, -1, 0)
 visibility_range_begin = 1.0
 visibility_range_end = 1.5
-mesh = SubResource("ArrayMesh_n47ni")
+mesh = SubResource("ArrayMesh_f030s")
 skeleton = NodePath("")
 
 [node name="LOD2" type="Node3D" parent="."]

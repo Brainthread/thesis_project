@@ -1,4 +1,4 @@
-extends Node3D
+extends Label
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,5 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	rotate(Vector3.RIGHT, deg_to_rad(randf_range(-90, 90)));
+	text = str(Engine.get_frames_per_second())
 	pass
