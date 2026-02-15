@@ -1,0 +1,65 @@
+extends Node
+
+@export var resolution_scale:int = 1
+@export var jitter_scale:int = 1
+@export var color_depth:int = 24
+@export var do_affine_mapping:bool = true
+@onready var overlay_compositor = preload("res://Scripts/Shaders/ps1_compositor.tres")
+
+@export var resolution_slider:HSlider
+@export var jitter_slider:HSlider
+@export var color_slider:HSlider
+@export var affine_toggle:CheckButton
+var textvalue = ""
+
+func _ready() -> void:
+	resolution_scale = randi_range(resolution_slider.min_value, resolution_slider.max_value)
+	jitter_scale = randf_range(jitter_slider.min_value, jitter_slider.max_value)
+	color_depth = randi_range(color_slider.min_value, color_slider.max_value)
+	do_affine_mapping = true if randi_range(0, 6) >= 4 else false
+	_on_setting_changed()
+	resolution_slider.value = resolution_scale
+	jitter_slider.value = jitter_scale
+	color_slider.value = color_depth
+	
+	resolution_slider.value_changed.connect(set_resolution)
+	color_slider.value_changed.connect(set_color_depth)
+	jitter_slider.value_changed.connect(set_jitter)
+	affine_toggle.toggled.connect(set_affine_mapping)
+
+func set_resolution(_value):
+	var scale = round(resolution_slider.value)
+	resolution_scale = scale
+	_on_setting_changed()
+
+func set_jitter(_value):
+	var scale = round(jitter_slider.value)
+	jitter_scale = scale
+	var jitter_resolution = [916/jitter_scale, 960/jitter_scale]
+	_on_setting_changed()
+
+func set_color_depth(_value):
+	var depth = round(color_slider.value)
+	color_depth = depth
+	_on_setting_changed()
+
+func set_affine_mapping(value):
+	do_affine_mapping = value
+	_on_setting_changed()
+
+func set_clip():
+	DisplayServer.clipboard_set(textvalue)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("one"):
+		set_clip()
+
+func _on_setting_changed():
+	var comp = overlay_compositor as Compositor
+	var res_scale = resolution_slider.max_value - resolution_scale + 1
+	comp.compositor_effects[0].set_scale_factor(res_scale)
+	comp.compositor_effects[0].set_color_depth(color_depth)
+	var jitter_resolution = [1280/jitter_scale, 960/jitter_scale]
+	RenderingServer.global_shader_parameter_set("resolution", jitter_resolution)
+	RenderingServer.global_shader_parameter_set("do_affine_texture_mapping", do_affine_mapping)
+	textvalue = "rs:" + str(resolution_scale) + ",\njs:" + str(jitter_scale) + ",\ncd:" + str(color_depth) + ",\nam:" + str(do_affine_mapping)

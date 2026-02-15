@@ -15,8 +15,8 @@ func _process(_delta: float) -> void:
 	if(Input.is_action_just_released("fire_torch")):
 		$Flame.visible = false
 
-func _on_controller_trigger_pressed(button_name):
+func _on_controller_trigger_pressed(_button_name):
 		$Flame.visible = true
 
-func _on_controller_trigger_released(button_name):
+func _on_controller_trigger_released(_button_name):
 		$Flame.visible = false

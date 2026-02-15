@@ -7,7 +7,7 @@
 render_priority = 0
 shader = ExtResource("1_7v681")
 shader_parameter/my_texture = ExtResource("2_7v681")
-shader_parameter/tint = Color(0.7425603, 0.66232014, 0.6535012, 1)
+shader_parameter/tint = Color(0.7920485, 0.7239147, 0.7170344, 1)
 shader_parameter/vertex_snap = true
 shader_parameter/goraud_shaded = false
 shader_parameter/do_affine_mapping = true

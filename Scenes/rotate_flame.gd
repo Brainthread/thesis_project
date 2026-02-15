@@ -7,6 +7,6 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	rotate(Vector3.RIGHT, deg_to_rad(randf_range(-90, 90)));
 	pass

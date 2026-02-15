@@ -2,8 +2,9 @@
 extends CompositorEffect
 class_name PS1OverlayShader
 
-@export var x_size = 480
-@export var y_size = 360
+@export var scale_factor = 4
+@export var color_depth = 24
+
 const template_shader: String = """
 #version 450
 
@@ -28,6 +29,7 @@ void main() {
 		return;
 	}
 	vec4 color = vec4(uv.x, uv.y, 0.5, 1);
+	#EXTERNAL_INPUT
 	#COMPUTE_CODE
 	imageStore(color_image, myuv, color);
 }
@@ -46,6 +48,14 @@ var pipeline: RID
 
 var mutex: Mutex = Mutex.new()
 var shader_is_dirty: bool = true
+
+func set_scale_factor(value:int):
+	scale_factor = value
+	shader_is_dirty = true
+	
+func set_color_depth(value:int):
+	color_depth = value
+	shader_is_dirty = true
 
 func _init():
 	effect_callback_type = EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
@@ -79,8 +89,8 @@ func _check_shader() -> bool:
 	# We don't have a (new) shader?
 	if new_shader_code.is_empty():
 		return pipeline.is_valid()
-
-	new_shader_code = template_shader.replace("#COMPUTE_CODE", new_shader_code);
+	var temp_code = template_shader.replace("#EXTERNAL_INPUT", ("int scale = ") + str(scale_factor) + ";\n" + "int color_depth = " + str(color_depth) + ";");
+	new_shader_code = temp_code.replace("#COMPUTE_CODE", new_shader_code);
 	
 	#new_shader_code = template_shader.replace("#COMPUTE_CODE", new_shader_code);
 

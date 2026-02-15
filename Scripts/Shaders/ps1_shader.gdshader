@@ -8,12 +8,9 @@ uniform bool vertex_snap = true;
 uniform bool goraud_shaded = false;
 group_uniforms;
 
+global uniform bool do_affine_texture_mapping;
 global uniform vec2 resolution;
 global uniform float depth_quantization;
-
-group_uniforms AffineTextureMapping;
-uniform bool do_affine_mapping = false;
-group_uniforms;
 
 varying vec4 clip_position;
 
@@ -23,7 +20,6 @@ void vertex() {
 	vec4 world_space_pos = model_matrix * vec4(VERTEX, 1);
 	vec4 view_pos = VIEW_MATRIX * world_space_pos;
 	vec4 clip_pos = PROJECTION_MATRIX * view_pos;
-
 	if (vertex_snap) {
 		clip_pos.xy = round(clip_pos.xy / clip_pos.w * resolution) / resolution * clip_pos.w;
 	}
@@ -35,7 +31,7 @@ void vertex() {
 	clip_position = clip_pos;
 	NORMAL = MODEL_NORMAL_MATRIX * NORMAL;
 	
-	if (do_affine_mapping == true) {
+	if (do_affine_texture_mapping == true) {
 		UV *= clip_pos.w;
 		COLOR *= clip_pos.w;
 	}
@@ -45,7 +41,7 @@ void vertex() {
 void fragment() {
 	vec2 uv = UV;
 	vec3 vertex_color = COLOR.rgb;
-	if(do_affine_mapping) {
+	if(do_affine_texture_mapping) {
 		uv /= clip_position.w;
 		vertex_color /= clip_position.w;
 	}

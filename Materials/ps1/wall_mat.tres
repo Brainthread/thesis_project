@@ -7,7 +7,7 @@
 render_priority = 0
 shader = ExtResource("1_lpuwg")
 shader_parameter/my_texture = ExtResource("2_lpuwg")
-shader_parameter/tint = Color(0.3020798, 0.22693008, 0.2261242, 1)
+shader_parameter/tint = Color(0.38195577, 0.292466, 0.29242384, 1)
 shader_parameter/vertex_snap = true
 shader_parameter/goraud_shaded = false
 shader_parameter/do_affine_mapping = true
