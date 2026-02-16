@@ -104,13 +104,9 @@ offset_left = 573.0
 offset_top = 51.0
 offset_right = 848.0
 offset_bottom = 326.0
-placeholder_text = "aaaa
-aaa
-aaaa
-aaaa
-aaa
-"
+placeholder_text = "When you have finished the task, press the button above and copy the string that appears here."
 editable = false
+wrap_mode = 1
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
@@ -128,9 +124,11 @@ offset_right = 821.0
 offset_bottom = 371.0
 text = "Copy to clipboard"
 
-[node name="SimpleCharacter" type="Node3D" parent="."]
+[node name="SimpleCharacter" type="Node3D" parent="." node_paths=PackedStringArray("parameter_handler", "camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8725188, 0)
 script = ExtResource("13_x2mcw")
+parameter_handler = NodePath("../parameterHandler")
+camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="SimpleCharacter"]
 compositor = ExtResource("3_x2mcw")
