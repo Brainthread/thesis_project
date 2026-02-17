@@ -3,7 +3,7 @@ class_name ParameterHandler
 
 @export var resolution_scale:int = 1
 @export var jitter_scale:int = 1
-var z_depth:int = 75
+var z_depth:float = 75
 var lod_cascades:int = 4
 var lod_distance:float = 10
 @export var color_depth:int = 24
@@ -29,7 +29,7 @@ func _ready() -> void:
 	resolution_scale = randi_range(round(resolution_slider.min_value), round(resolution_slider.max_value))
 	jitter_scale = randi_range(round(jitter_slider.min_value), round(jitter_slider.max_value))
 	color_depth = randi_range(round(color_slider.min_value), round(color_slider.max_value))
-	z_depth = randi_range(round(depth_slider.min_value), round(depth_slider.max_value))
+	z_depth = randf_range((depth_slider.min_value), (depth_slider.max_value))
 	lod_cascades = randi_range(round(lod_cascade_slider.min_value), round(lod_cascade_slider.max_value))
 	lod_distance = randf_range(lod_distance_slider.min_value, lod_distance_slider.max_value)
 	
@@ -109,6 +109,8 @@ func _on_setting_changed():
 	RenderingServer.global_shader_parameter_set("resolution", jitter_resolution)
 	RenderingServer.global_shader_parameter_set("do_affine_texture_mapping", do_affine_mapping)
 	RenderingServer.global_shader_parameter_set("depth_quantization", z_depth)
+	RenderingServer.global_shader_parameter_set("scale_factor", res_scale)
+	RenderingServer.global_shader_parameter_set("color_depth", color_depth)
 	LODCascades.LOD_cascades = lod_cascades
 	LODCascades.LOD_distance = lod_distance
 	textvalue = "rs:" + str(resolution_scale) + ",\njs:" + str(jitter_scale) + ",\ncd:" + str(color_depth) + ",\nam:" + str(do_affine_mapping) + ",\ndq" + str(z_depth)
