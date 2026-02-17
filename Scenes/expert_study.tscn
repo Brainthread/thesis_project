@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5v4wox1nqdjm"]
+[gd_scene load_steps=8 format=3 uid="uid://c5v4wox1nqdjm"]
 
 [ext_resource type="Shader" uid="uid://dcmd5xuyv8u5f" path="res://Scenes/screen_shader.gdshader" id="1_05lcj"]
 [ext_resource type="Script" uid="uid://dannwertdwuvh" path="res://parameter_handler.gd" id="1_ctgw0"]
 [ext_resource type="Compositor" uid="uid://r76ikc2vw5qd" path="res://Scripts/Shaders/ps1_compositor.tres" id="3_x2mcw"]
-[ext_resource type="PackedScene" uid="uid://cnrse7c226fbw" path="res://Scenes/Environment/pipe.tscn" id="7_hbdl1"]
 [ext_resource type="PackedScene" uid="uid://8lcqf8ov4n0" path="res://Scenes/Environment/scene.tscn" id="11_52m3u"]
 [ext_resource type="Script" uid="uid://iuxp3jpd5ta1" path="res://Scenes/control.gd" id="12_u2hlo"]
 [ext_resource type="Script" uid="uid://drw2wvcdhlbr6" path="res://Scenes/simple_character.gd" id="13_x2mcw"]
@@ -204,9 +203,3 @@ camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="SimpleCharacter"]
 compositor = ExtResource("3_x2mcw")
-
-[node name="PIPE" parent="." instance=ExtResource("7_hbdl1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26786917, 0.40717626, 1.0340862)
-
-[node name="PIPE2" parent="." instance=ExtResource("7_hbdl1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36675352, 0.30155373, 0.92463684)
