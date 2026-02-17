@@ -1,6 +1,7 @@
 shader_type spatial;
 render_mode skip_vertex_transform, unshaded;
 
+
 group_uniforms Basic;
 uniform sampler2D my_texture : source_color, filter_nearest, repeat_disable;
 uniform vec3 tint : source_color = vec3(1);
@@ -24,8 +25,12 @@ void vertex() {
 		clip_pos.xy = round(clip_pos.xy / clip_pos.w * resolution) / resolution * clip_pos.w;
 	}
 	if (depth_quantization > 0.0) {
-	    float scale = depth_quantization; 
-	    clip_pos.z = floor(clip_pos.z * scale) / scale;
+		float delta = 2.0/(depth_quantization-1.0);
+		float z_hat = floor((clip_pos.z + 1.0)/delta);
+		float z = -1.0 + (z_hat*delta);
+		float scale = depth_quantization; 
+		clip_pos.z = z;
+	//	clip_pos.z = floor(clip_pos.z * scale) / scale;
 	}
 	POSITION = clip_pos;
 	clip_position = clip_pos;

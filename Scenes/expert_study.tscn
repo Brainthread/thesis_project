@@ -15,12 +15,15 @@ transform = Transform3D(1, 0, 0, 0, 0.9129197, 0.4081393, 0, -0.4081393, 0.91291
 
 [node name="Scene" parent="." instance=ExtResource("11_52m3u")]
 
-[node name="parameterHandler" type="Node3D" parent="." node_paths=PackedStringArray("resolution_slider", "jitter_slider", "color_slider", "affine_toggle", "control_node", "output_text", "copy_to_clip_button", "generate_parameters_button")]
+[node name="parameterHandler" type="Node3D" parent="." node_paths=PackedStringArray("resolution_slider", "jitter_slider", "color_slider", "affine_toggle", "depth_slider", "lod_cascade_slider", "lod_distance_slider", "control_node", "output_text", "copy_to_clip_button", "generate_parameters_button")]
 script = ExtResource("1_ctgw0")
 resolution_slider = NodePath("../Control/Label/HSlider")
 jitter_slider = NodePath("../Control/Label2/HSlider")
 color_slider = NodePath("../Control/Label3/HSlider")
 affine_toggle = NodePath("../Control/Label4/CheckButton")
+depth_slider = NodePath("../Control/Label5/HSlider")
+lod_cascade_slider = NodePath("../Control/Label6/HSlider")
+lod_distance_slider = NodePath("../Control/Label7/HSlider")
 control_node = NodePath("../Control")
 output_text = NodePath("../Control/OutputText")
 copy_to_clip_button = NodePath("../Control/Button2")
@@ -97,6 +100,56 @@ layout_mode = 0
 offset_top = 23.0
 offset_right = 44.0
 offset_bottom = 47.0
+
+[node name="Label5" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 322.0
+offset_right = 187.0
+offset_bottom = 345.0
+text = "Depth Quantization (z-fighting)"
+
+[node name="HSlider" type="HSlider" parent="Control/Label5"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 85.0
+max_value = 300.0
+value = 50.0
+rounded = true
+
+[node name="Label6" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 398.0
+offset_right = 268.0
+offset_bottom = 421.0
+text = "LOD cascades"
+
+[node name="HSlider" type="HSlider" parent="Control/Label6"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 85.0
+min_value = 1.0
+max_value = 4.0
+value = 4.0
+rounded = true
+
+[node name="Label7" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 466.0
+offset_right = 268.0
+offset_bottom = 489.0
+text = "LOD range"
+
+[node name="HSlider" type="HSlider" parent="Control/Label7"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 85.0
+min_value = 0.1
+max_value = 5.0
+step = 5.0
+value = 5.0
 
 [node name="OutputText" type="TextEdit" parent="Control"]
 layout_mode = 0
