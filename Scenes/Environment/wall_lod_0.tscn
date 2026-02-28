@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://nb6ll6uks1a4"]
+[gd_scene load_steps=11 format=4 uid="uid://nb6ll6uks1a4"]
 
+[ext_resource type="Script" uid="uid://do38rn1amlnud" path="res://Scenes/Environment/global_subdivision_lod.gd" id="1_n47ni"]
 [ext_resource type="Material" uid="uid://e6uy32s0eqvd" path="res://Materials/ps1/wall_mat.tres" id="1_yawpl"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_abtct"]
@@ -128,8 +129,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_d570p")
 
-[node name="Wall_LOD0" type="Node3D"]
+[node name="Wall_LOD0" type="Node3D" node_paths=PackedStringArray("LOD_0", "LOD_1", "LOD_2", "LOD_3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_n47ni")
+LOD_0 = [NodePath("LOD0/Plane"), NodePath("LOD0/Plane2"), NodePath("LOD0/Plane3"), NodePath("LOD0/Plane4")]
+LOD_1 = [NodePath("LOD1/Plane2"), NodePath("LOD1/Plane3"), NodePath("LOD1/Plane4"), NodePath("LOD1/Plane5")]
+LOD_2 = [NodePath("LOD2/Plane3"), NodePath("LOD2/Plane4"), NodePath("LOD2/Plane5"), NodePath("LOD2/Plane6")]
+LOD_3 = [NodePath("LOD3/Plane4"), NodePath("LOD3/Plane5"), NodePath("LOD3/Plane6"), NodePath("LOD3/Plane7")]
 
 [node name="LOD0" type="Node3D" parent="."]
 

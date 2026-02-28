@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bfvc40f6ny6l8"]
+
+[ext_resource type="Texture2D" uid="uid://b4ti3ausmgjr0" path="res://models/hi-fi-pipe_hi-fi-pipe_Pipe_HD.png" id="1_b8dwr"]
+
+[resource]
+albedo_texture = ExtResource("1_b8dwr")
+metallic = 0.05
+metallic_specular = 0.12
+roughness = 0.35
+emission_enabled = true

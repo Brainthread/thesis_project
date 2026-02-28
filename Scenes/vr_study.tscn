@@ -1,25 +1,28 @@
-[gd_scene load_steps=18 format=4 uid="uid://cnh6fy0ahv27m"]
+[gd_scene load_steps=21 format=4 uid="uid://cnh6fy0ahv27m"]
 
 [ext_resource type="Script" uid="uid://dy425ydosk86" path="res://Scenes/study_planner_node.gd" id="1_7nmaa"]
+[ext_resource type="PackedScene" uid="uid://darfnal1126ig" path="res://Scenes/study_nodes/test_breach.tscn" id="2_iyodr"]
 [ext_resource type="Script" uid="uid://cjnyuu47lxfwb" path="res://Scripts/XR/start_xr.gd" id="2_wuk74"]
 [ext_resource type="Script" uid="uid://05rgwgm68ap8" path="res://Scenes/xr_camera_3d.gd" id="3_1gf5m"]
+[ext_resource type="AudioStream" uid="uid://chq3y0py8mhs3" path="res://audio/freesound_community-water-drip-72357.mp3" id="3_y0apn"]
 [ext_resource type="Shader" uid="uid://bcahr5qafa6f1" path="res://Scripts/Shaders/ps1_shader.gdshader" id="4_1gf5m"]
 [ext_resource type="Script" uid="uid://8lg7xaimqoy5" path="res://Scenes/blowtorch.gd" id="4_7nmaa"]
-[ext_resource type="Texture2D" uid="uid://tdll6ef14m8h" path="res://models/blowtorch_blowtorch_Welding_tool.png" id="4_qg3qk"]
 [ext_resource type="Script" uid="uid://dj6c2wh8n8ejo" path="res://Scenes/fpscounter.gd" id="5_2d61u"]
 [ext_resource type="Compositor" uid="uid://r76ikc2vw5qd" path="res://Scripts/Shaders/ps1_compositor.tres" id="5_qqebx"]
 [ext_resource type="Script" uid="uid://rkodrgc2emvk" path="res://Scenes/rotate_flame.gd" id="7_ab2tm"]
-[ext_resource type="Texture2D" uid="uid://dtq3awa5hg3tv" path="res://models/Flame_fire.png" id="8_cimwl"]
-[ext_resource type="PackedScene" uid="uid://8lcqf8ov4n0" path="res://Scenes/Environment/scene.tscn" id="11_cimwl"]
+[ext_resource type="Texture2D" uid="uid://tdll6ef14m8h" path="res://models/blowtorch_blowtorch_Welding_tool.png" id="8_nxqbl"]
+[ext_resource type="Texture2D" uid="uid://dtq3awa5hg3tv" path="res://models/Flame_fire.png" id="10_iyodr"]
+[ext_resource type="PackedScene" uid="uid://crhtcke1hcsoe" path="res://Scenes/Environment/lofi_scene.tscn" id="11_nxqbl"]
+[ext_resource type="AudioStream" uid="uid://b82oclb613nro" path="res://audio/soundreality-gas-stove-burner-450981.wav" id="13_crr44"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1gf5m"]
 render_priority = 0
 shader = ExtResource("4_1gf5m")
-shader_parameter/my_texture = ExtResource("4_qg3qk")
-shader_parameter/tint = Color(0.8656727, 0.702849, 0.6674435, 1)
+shader_parameter/my_texture = ExtResource("8_nxqbl")
+shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/vertex_snap = true
 shader_parameter/goraud_shaded = false
-shader_parameter/do_affine_mapping = true
+shader_parameter/use_fog = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7nmaa"]
 _surfaces = [{
@@ -56,11 +59,11 @@ shadow_mesh = SubResource("ArrayMesh_7nmaa")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2d61u"]
 render_priority = 0
 shader = ExtResource("4_1gf5m")
-shader_parameter/my_texture = ExtResource("8_cimwl")
+shader_parameter/my_texture = ExtResource("10_iyodr")
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/vertex_snap = true
 shader_parameter/goraud_shaded = false
-shader_parameter/do_affine_mapping = false
+shader_parameter/use_fog = false
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_u6j6x"]
 _surfaces = [{
@@ -98,20 +101,49 @@ shadow_mesh = SubResource("ArrayMesh_u6j6x")
 
 [node name="StudyManager" type="Node3D" parent="."]
 
-[node name="VR study" type="Node3D" parent="StudyManager"]
+[node name="VR study" type="Node3D" parent="StudyManager" node_paths=PackedStringArray("breach_nodes", "test_node")]
 script = ExtResource("1_7nmaa")
+breach_nodes = [NodePath("Breach"), NodePath("Breach2"), NodePath("Breach3"), NodePath("Breach4"), NodePath("Breach5")]
+test_node = NodePath("TestBreach")
 
-[node name="Regular study" type="Node3D" parent="StudyManager"]
-script = ExtResource("1_7nmaa")
+[node name="TestBreach" parent="StudyManager/VR study" instance=ExtResource("2_iyodr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 1.448972, 0.22839156)
+
+[node name="Breach" parent="StudyManager/VR study" instance=ExtResource("2_iyodr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.081187375, 1.5880362, 0.20318201)
+
+[node name="Breach2" parent="StudyManager/VR study" instance=ExtResource("2_iyodr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.96447134, 1.3275404, 0.18614082)
+
+[node name="Breach3" parent="StudyManager/VR study" instance=ExtResource("2_iyodr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.8979862, 2.0827503, 2.0158527)
+
+[node name="Breach4" parent="StudyManager/VR study" instance=ExtResource("2_iyodr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.10220468, 1.4280128, 2.002273)
+
+[node name="Breach5" parent="StudyManager/VR study" instance=ExtResource("2_iyodr")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -1.3961405, 1.587997, 1.1073616)
+
+[node name="SoundManager" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SoundManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8077995, 0)
+stream = ExtResource("3_y0apn")
+volume_db = -16.307
+max_db = -8.978
+pitch_scale = 0.82
+autoplay = true
+panning_strength = 0.26
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9129197, 0.4081393, 0, -0.4081393, 0.9129197, 0, 0, 0)
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7846843, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5101084, 1.5)
 script = ExtResource("2_wuk74")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2090244, 0)
 compositor = ExtResource("5_qqebx")
 current = true
 size = 0.185
@@ -123,11 +155,11 @@ offset_bottom = 23.0
 script = ExtResource("5_2d61u")
 
 [node name="Righthand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38544673, 0, -0.6898858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36090946, -0.38228786, -1.148638)
 tracker = &"right_hand"
 
 [node name="blowtorch" type="Node3D" parent="XROrigin3D/Righthand"]
-transform = Transform3D(0.14661017, 0, -0.031708967, 0, 0.14999999, 0, 0.031708967, 0, 0.14661017, 0, 0, -0.00036370754)
+transform = Transform3D(-6.556708e-09, 0, -0.14999999, 0, 0.14999999, 0, 0.14999999, 0, -6.556708e-09, 0, 0, 0.102886856)
 script = ExtResource("4_7nmaa")
 
 [node name="Cube_001" type="MeshInstance3D" parent="XROrigin3D/Righthand/blowtorch"]
@@ -137,6 +169,9 @@ skeleton = NodePath("")
 [node name="RayCast3D" type="RayCast3D" parent="XROrigin3D/Righthand/blowtorch"]
 transform = Transform3D(1.9999996, 7.385881e-15, 5.9604638e-08, 0, 1.9999999, 0, -5.9604638e-08, 3.9458467e-15, 1.9999996, -1.9945369, 0.35000086, 4.7683716e-07)
 target_position = Vector3(-0.535, 0, 0)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="Flame" type="Node3D" parent="XROrigin3D/Righthand/blowtorch"]
 transform = Transform3D(-7.450581e-09, -0.4, -1.7484556e-08, 0, -1.7484554e-08, 0.39999998, -0.4, 7.450581e-09, 4.440892e-16, -2.3764553, 0.35000038, 4.7683716e-07)
@@ -147,10 +182,19 @@ transform = Transform3D(0.50746214, 0, 0, 0, 0.50746214, 0, 0, 0, 0.50746214, 0,
 mesh = SubResource("ArrayMesh_xojyh")
 skeleton = NodePath("")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="XROrigin3D/Righthand/blowtorch/Flame"]
+light_color = Color(0.6773022, 0.88042015, 0.9999998, 1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="XROrigin3D/Righthand/blowtorch"]
+stream = ExtResource("13_crr44")
+max_db = 0.989
+panning_strength = 2.0
+
 [node name="Lefthand" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19684103, 0, -0.23747882)
 tracker = &"left_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
-[node name="Scene" parent="." instance=ExtResource("11_cimwl")]
+[node name="Scene" parent="." instance=ExtResource("11_nxqbl")]
+transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 0.7, 0, 0, 0)

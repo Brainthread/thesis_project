@@ -12,7 +12,7 @@ var cascades = 1
 func _ready() -> void:
 	LODCascades.set_LOD_cascade_value.connect(set_LOD_cascades)
 	LODCascades.set_LOD_distance_value.connect(set_LOD_distance)
-	print("LOD active")
+	update_LOD_settings()
 
 func set_LOD_cascades(value):
 	cascades = value
@@ -24,6 +24,13 @@ func set_LOD_distance(value):
 	update_LOD_settings()
 
 func update_LOD_settings():
+	if LODCascades.LOD_enabled == false:
+		cascades = 1
+		update_LOD_inner_loop(LOD_0, 1, cascades)
+		update_LOD_inner_loop(LOD_1, 0, cascades)
+		update_LOD_inner_loop(LOD_2, 1, cascades)
+		update_LOD_inner_loop(LOD_3, 1, cascades)
+		return
 	update_LOD_inner_loop(LOD_0, 0, cascades)
 	update_LOD_inner_loop(LOD_1, 1, cascades)
 	update_LOD_inner_loop(LOD_2, 2, cascades)

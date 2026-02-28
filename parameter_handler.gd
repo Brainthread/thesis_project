@@ -24,6 +24,7 @@ var settings_visible = false
 @export var output_text:TextEdit
 @export var copy_to_clip_button:Button
 @export var generate_parameters_button:Button
+@export var sub_view:SubViewport
 
 func _ready() -> void:
 	resolution_scale = randi_range(round(resolution_slider.min_value), round(resolution_slider.max_value))
@@ -33,12 +34,13 @@ func _ready() -> void:
 	lod_cascades = randi_range(round(lod_cascade_slider.min_value), round(lod_cascade_slider.max_value))
 	lod_distance = randf_range(lod_distance_slider.min_value, lod_distance_slider.max_value)
 	
-	do_affine_mapping = true if randi_range(0, 6) >= 4 else false
+	do_affine_mapping = true if randi_range(1, 6) >= 4 else false
 	_on_setting_changed()
 	
 	resolution_slider.value = resolution_scale
 	jitter_slider.value = jitter_scale
 	color_slider.value = color_depth
+	affine_toggle.button_pressed = do_affine_mapping
 	lod_cascade_slider.value_changed.connect(set_lod_cascades)
 	lod_distance_slider.value_changed.connect(set_lod_distance)
 	#depth_slider.value = z_depth
@@ -101,14 +103,20 @@ func _process(delta: float) -> void:
 		set_clip()
 	if Input.is_action_just_pressed("toggle_menu"):
 		toggle_visible()
+		
+func set_game_resolution(scale: float):
+	var base_size = Vector2i(916, 960)
+	sub_view.get_parent().size = base_size / int(scale)
+	sub_view.get_parent().scale = Vector2i(int(scale),int(scale))
 
 func _on_setting_changed():
-	print("Setting changed")
 	var comp = overlay_compositor as Compositor
 	var res_scale = resolution_slider.max_value - resolution_scale + 1
+	var jitter_resolution = [916/jitter_scale, 960/jitter_scale]
+	print(jitter_resolution, " : ", [916/res_scale, 960/res_scale])
 	comp.compositor_effects[0].set_scale_factor(res_scale)
 	comp.compositor_effects[0].set_color_depth(color_depth)
-	var jitter_resolution = [916/jitter_scale, 960/jitter_scale]
+	set_game_resolution(res_scale)
 	RenderingServer.global_shader_parameter_set("resolution", jitter_resolution)
 	RenderingServer.global_shader_parameter_set("do_affine_texture_mapping", do_affine_mapping)
 #	RenderingServer.global_shader_parameter_set("depth_quantization", z_depth)
@@ -116,4 +124,4 @@ func _on_setting_changed():
 	RenderingServer.global_shader_parameter_set("color_depth", color_depth)
 	LODCascades.set_LOD_cascades(lod_cascades)
 	LODCascades.set_LOD_distance(lod_distance)
-	textvalue = "rs:" + str(resolution_scale) + ",\njs:" + str(jitter_scale) + ",\ncd:" + str(color_depth) + ",\nam:" + str(do_affine_mapping) + ",\ndq" + str(z_depth)
+	textvalue = "rs:" + str(resolution_scale) + ",\njs:" + str(jitter_scale) + ",\ncd:" + str(color_depth) + ",\nam:" + str(do_affine_mapping)

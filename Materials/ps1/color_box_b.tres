@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bvggp1xjduxbw"]
+
+[ext_resource type="Shader" uid="uid://bcahr5qafa6f1" path="res://Scripts/Shaders/ps1_shader.gdshader" id="1_unijo"]
+[ext_resource type="Texture2D" uid="uid://dbh71ptldxya7" path="res://Materials/textures/BlueSpace.png" id="2_unijo"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_unijo")
+shader_parameter/my_texture = ExtResource("2_unijo")
+shader_parameter/tint = Color(0.6485605, 0.59833926, 0.6175405, 1)
+shader_parameter/vertex_snap = true
+shader_parameter/goraud_shaded = false

@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://darfnal1126ig"]
+
+[ext_resource type="Script" uid="uid://efbg388dh81k" path="res://Scenes/breach_node.gd" id="1_85v00"]
+[ext_resource type="Material" uid="uid://65sxhjd08uae" path="res://Materials/ps1/red.tres" id="2_dinhd"]
+[ext_resource type="AudioStream" uid="uid://uxwx48ymm1wp" path="res://audio/freesound_community-gooey-squish-14820.wav" id="3_dinhd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n1ma2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dinhd"]
+direction = Vector3(10, 0, 0)
+spread = 180.0
+initial_velocity_min = 9.679999
+initial_velocity_max = 19.35
+scale_min = 0.0
+scale_max = 0.02
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hrpue"]
+material = ExtResource("2_dinhd")
+orientation = 2
+
+[node name="TestBreach" type="StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_85v00")
+metadata/_custom_type_script = "uid://efbg388dh81k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_n1ma2")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material = ExtResource("2_dinhd")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_dinhd")
+volume_db = 12.948
+max_db = 6.0
+panning_strength = 2.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 90
+one_shot = true
+explosiveness = 0.86
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_dinhd")
+draw_pass_1 = SubResource("PlaneMesh_hrpue")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 5
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_dinhd")
+draw_pass_1 = SubResource("PlaneMesh_hrpue")

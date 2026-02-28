@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://65sxhjd08uae"]
+
+[ext_resource type="Shader" uid="uid://bcahr5qafa6f1" path="res://Scripts/Shaders/ps1_shader.gdshader" id="1_ldua5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ldua5")
+shader_parameter/tint = Color(0.619353, 0.12917957, 1.92523e-07, 1)
+shader_parameter/vertex_snap = true
+shader_parameter/goraud_shaded = false
+shader_parameter/use_fog = true

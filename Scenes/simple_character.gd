@@ -23,10 +23,18 @@ func _process(delta: float) -> void:
 	camera.rotation_degrees.x = look_rotation.x
 	rotation_degrees.y = look_rotation.y
 	if(Input.is_key_pressed(KEY_W)):
-		position -= transform.basis.z * 0.5 * delta
+		position -= transform.basis.z * 1 * delta
 	if(Input.is_key_pressed(KEY_S)):
-		position += transform.basis.z * 0.5 * delta
+		position += transform.basis.z * 1 * delta
 	if(Input.is_key_pressed(KEY_A)):
-		position -= transform.basis.x * 0.5 * delta
+		position -= transform.basis.x * 1 * delta
 	if(Input.is_key_pressed(KEY_D)):
-		position += transform.basis.x * 0.5 * delta
+		position += transform.basis.x * 1 * delta
+	if position.z < -2.56:
+		position.z = -2.56
+	if position.z > 2.56:
+		position.z = 2.56
+	if position.x < -1.657:
+		position.x = -1.657
+	if position.x > 1.657:
+		position.x = 1.657

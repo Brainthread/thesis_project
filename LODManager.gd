@@ -2,6 +2,7 @@ extends Node
 class_name LODManager
 var LOD_cascades:int = 4
 var LOD_distance:float = 0.8
+var LOD_enabled:bool = false
 
 signal set_LOD_cascade_value (value)
 signal set_LOD_distance_value (value)

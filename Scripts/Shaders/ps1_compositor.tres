@@ -10,6 +10,7 @@ effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("1_n8lbn")
+color_depth = 5
 shader_code = "const int pixel_size = scale;
 const ivec2 pixel_step = ivec2(pixel_size, pixel_size);
 const float dither_gamma = 10;
